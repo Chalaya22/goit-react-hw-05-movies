@@ -26,7 +26,7 @@ const Movies = () => {
       setIsLoading(true);
       try {
         const response = await getSearchMovies(queryValue);
-        setMovies(response);
+        setMovies(response.data.results);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -41,7 +41,7 @@ const Movies = () => {
       {error && <div>Try to reload the page</div>}
       {isloading && <Loader />}
       <SearchForm onformSubmit={onformSubmit} />
-      {/* {movies !== null && <MoviesList movies={movies} />} */}
+      {movies !== null && <MoviesList movies={movies} />}
     </div>
   );
 };

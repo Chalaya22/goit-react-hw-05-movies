@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { StyledReviews } from './Reviews.styled';
 import { getReviewsMovie } from '../../services/api';
-import NotFound from 'components/NotFound/NotFound';
+// import NotFound from 'components/NotFound/NotFound';
 import Loader from 'components/Loader/Loader';
 
 const Reviews = () => {
@@ -17,7 +17,7 @@ const Reviews = () => {
       setIsLoading(true);
       try {
         const response = await getReviewsMovie(movieId);
-        setReviews(response);
+        setReviews(response.data.results);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -30,7 +30,7 @@ const Reviews = () => {
     <>
       {error && <div>Try to reload the page</div>}
       {isloading && <Loader />}
-      <ul>
+      <StyledReviews>
         {reviews.length > 0 &&
           reviews.map(({ id, author, content }) => {
             return (
@@ -40,7 +40,7 @@ const Reviews = () => {
               </li>
             );
           })}
-      </ul>
+      </StyledReviews>
     </>
   );
 };
