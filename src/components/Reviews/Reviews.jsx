@@ -17,7 +17,7 @@ const Reviews = () => {
       setIsLoading(true);
       try {
         const response = await getReviewsMovie(movieId);
-        setReviews(response.data.results);
+        setReviews(response);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -30,17 +30,21 @@ const Reviews = () => {
     <>
       {error && <div>Try to reload the page</div>}
       {isloading && <Loader />}
-      <StyledReviews>
-        {reviews.length > 0 &&
-          reviews.map(({ id, author, content }) => {
-            return (
-              <li key={id}>
-                <h3>{author}</h3>
-                <p>{content}</p>
+
+      {reviews.length > 0 ? (
+        reviews.map(({ id, author, content }) => {
+          return (
+            <StyledReviews key={id}>
+              <li>
+                <b> Author: {author}</b>
               </li>
-            );
-          })}
-      </StyledReviews>
+              <li>{content}</li>
+            </StyledReviews>
+          );
+        })
+      ) : (
+        <p>Sorry, we don`t have any review for this movie 🤷🏼‍♂️</p>
+      )}
     </>
   );
 };

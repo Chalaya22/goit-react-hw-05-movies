@@ -7,7 +7,7 @@ const { useEffect, useState } = require('react');
 
 const Home = () => {
   const [isloading, setIsLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Home = () => {
       setIsLoading(true);
       try {
         const response = await getTrending();
-        setMovies(prevState => [...prevState, ...response.results]);
+        setTrendingMovies(prevState => [...prevState, ...response.results]);
       } catch (error) {
         setError(error.massage);
       } finally {
@@ -29,7 +29,7 @@ const Home = () => {
       {error !== null && <p> Ooops...Error massage: {error}</p>}
       {isloading && <Loader />}
       <Title title="Trending today" />
-      <MoviesList movies={movies} />
+      <MoviesList movies={trendingMovies} />
     </div>
   );
 };

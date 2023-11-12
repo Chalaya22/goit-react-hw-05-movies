@@ -6,7 +6,7 @@ import MoviesList from 'components/MoviesList/MoviesList';
 import { getSearchMovies } from '../services/api';
 
 const Movies = () => {
-  const [movies, setMovies] = useState(null);
+  const [searchMovies, setSearchMovies] = useState(null);
   const [isloading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -26,7 +26,7 @@ const Movies = () => {
       setIsLoading(true);
       try {
         const response = await getSearchMovies(queryValue);
-        setMovies(response.data.results);
+        setSearchMovies(response);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -41,7 +41,7 @@ const Movies = () => {
       {error && <div>Try to reload the page</div>}
       {isloading && <Loader />}
       <SearchForm onformSubmit={onformSubmit} />
-      {movies !== null && <MoviesList movies={movies} />}
+      {searchMovies !== null && <MoviesList movies={searchMovies} />}
     </div>
   );
 };
