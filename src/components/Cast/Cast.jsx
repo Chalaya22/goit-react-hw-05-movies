@@ -6,6 +6,7 @@ import {
   StyledCastsImg,
 } from './Cast.styled';
 import Loader from 'components/Loader/Loader';
+import NotFound from 'components/NotFound/NotFound';
 import { getCastMovie } from '../../services/api';
 const { useEffect } = require('react');
 
@@ -48,7 +49,7 @@ const Cast = () => {
             </StyledCastsItem>
           ))}
       </StyledCastsList>
-      {/* {(!actors || actors.cast.length <= 0) && <NoData />} */}
+      {!actors && <NotFound />}
     </>
   );
 };

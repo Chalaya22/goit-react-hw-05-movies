@@ -1,10 +1,47 @@
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import css from './Reviews.module.css';
-const { useEffect } = require('react');
+import { StyledReviews } from './Reviews.styled';
+import { getReviewsMovie } from '../../services/api';
+import NotFound from 'components/NotFound/NotFound';
+import Loader from 'components/Loader/Loader';
 
 const Reviews = () => {
+  const [reviews, setReviews] = useState([]);
+  const [isloading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { movieId } = useParams();
-  useEffect(() => {}, []);
-  return <div>Reviews: {movieId}</div>;
+
+  useEffect(() => {
+    if (!movieId) return;
+    const getReviews = async () => {
+      setIsLoading(true);
+      try {
+        const response = await getReviewsMovie(movieId);
+        setReviews(response);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getReviews();
+  }, [movieId]);
+  return (
+    <>
+      {error && <div>Try to reload the page</div>}
+      {isloading && <Loader />}
+      <ul>
+        {reviews.length > 0 &&
+          reviews.map(({ id, author, content }) => {
+            return (
+              <li key={id}>
+                <h3>{author}</h3>
+                <p>{content}</p>
+              </li>
+            );
+          })}
+      </ul>
+    </>
+  );
 };
 export default Reviews;
