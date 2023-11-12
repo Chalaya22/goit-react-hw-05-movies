@@ -5,7 +5,7 @@ export const StyledMovList = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
-  line-height: 1.5;
+  line-height: 0.8;
 `;
 export const StyledUl = styled.ul``;
 export const StyledLink = styled(Link)`

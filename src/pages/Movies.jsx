@@ -6,7 +6,7 @@ import MoviesList from 'components/MoviesList/MoviesList';
 import { getSearchMovies } from '../services/api';
 
 const Movies = () => {
-  const [serchedMovies, setSerchedMovies] = useState(null);
+  const [movies, setMovies] = useState(null);
   const [isloading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -17,6 +17,7 @@ const Movies = () => {
     e.preventDefault();
     const value = e.currentTarget.elements.searchKey.value;
     setSearchParams({ query: value });
+    e.target.reset();
   };
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const Movies = () => {
       setIsLoading(true);
       try {
         const response = await getSearchMovies(queryValue);
-        setSerchedMovies(response);
+        setMovies(response);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -40,7 +41,7 @@ const Movies = () => {
       {error && <div>Try to reload the page</div>}
       {isloading && <Loader />}
       <SearchForm onformSubmit={onformSubmit} />
-      {/* {serchedMovies !== null && <MoviesList movies={serchedMovies} />} */}
+      {/* {movies !== null && <MoviesList movies={movies} />} */}
     </div>
   );
 };

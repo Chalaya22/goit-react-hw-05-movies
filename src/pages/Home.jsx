@@ -28,7 +28,7 @@ const Home = () => {
     <div>
       {error !== null && <p> Ooops...Error massage: {error}</p>}
       {isloading && <Loader />}
-      <Title name="Trending today" />
+      <Title title="Trending today" />
       <MoviesList movies={movies} />
     </div>
   );

@@ -11,12 +11,11 @@ const MoviesList = ({ movies }) => {
           return (
             <StyledUl key={id}>
               <StyledLink to={`/movies/${id}`} state={{ from: location }}>
-                <img
-                  sizes="150px"
+                {/* <img
                   src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                   alt={`Poster of ${title}`}
-                />
-                <h2>{title}</h2>
+                /> */}
+                <p>{title}</p>
               </StyledLink>
             </StyledUl>
           );
