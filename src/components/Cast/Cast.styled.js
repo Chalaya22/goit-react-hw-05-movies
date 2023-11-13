@@ -9,12 +9,13 @@ export const StyledCastsList = styled.ul`
   justify-content: center;
 `;
 export const StyledCastsItem = styled.li`
-  width: calc((100% - 96px) / 6);
+  width: calc((100% - 60px) / 4);
   min-height: 280px;
+  list-style-type: none;
 `;
 export const StyledCastsImg = styled.img`
-  width: 100%;
-  min-height: 180px;
+  max-width: 220px;
+  height: 305px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 `;
