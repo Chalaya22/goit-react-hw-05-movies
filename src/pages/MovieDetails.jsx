@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import BtnBack from 'components/BtnBack/BtnBack';
 import Loader from 'components/Loader/Loader';
-import { getDetailsMovie } from '../../services/api';
+import { getDetailsMovie } from '../services/api';
 import MoviesDetailsDescribe from 'components/MoviesDetailsDescribe/MoviesDetailsDescribe';
 const { useEffect } = require('react');
 
