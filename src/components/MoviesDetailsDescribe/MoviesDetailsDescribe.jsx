@@ -1,5 +1,9 @@
 import React from 'react';
-import { StyleDetailsdescribe } from './MoviesDetailsDescribe.styled';
+import {
+  StyleDetailsdescribe,
+  LinkListCastReviews,
+  StyledLinkCastReviews,
+} from './MoviesDetailsDescribe.styled';
 import { Link } from 'react-router-dom';
 const MoviesDetailsDescribe = ({ movies }) => {
   return (
@@ -10,26 +14,23 @@ const MoviesDetailsDescribe = ({ movies }) => {
           alt={`${movies.original_title} poster`}
           width="250"
         />
-
-        <div>
-          <ul>
-            See more...
-            <li>
-              <Link to="cast">cast</Link>
-            </li>
-            <li>
-              <Link to="reviews">reviews</Link>
-            </li>
-          </ul>
-        </div>
+        <h3> See more...</h3>
+        <LinkListCastReviews>
+          <li>
+            <StyledLinkCastReviews to="cast">cast</StyledLinkCastReviews>
+          </li>
+          <li>
+            <StyledLinkCastReviews to="reviews">reviews</StyledLinkCastReviews>
+          </li>
+        </LinkListCastReviews>
       </div>
       <div>
         <h2>{movies.title}</h2>
         <p>({movies.original_title})</p>
 
-        <h2>Огляд</h2>
+        <h2>Overviev</h2>
         <p>{movies.overview}</p>
-        <h2>Жанри</h2>
+        <h2>Genres</h2>
         <ul>
           {movies.genres &&
             movies.genres.map(genre => <li key={genre.id}>{genre.name}</li>)}

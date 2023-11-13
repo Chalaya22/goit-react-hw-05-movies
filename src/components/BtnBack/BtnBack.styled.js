@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const StyledLinkBtn = styled(Link)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
   :hover {
     color: tomato;
   }
 `;
-export const Btn = styled.button`
+export const StyledBtnBack = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 4px;
   padding: 6px 8px;
+  margin-bottom: 15px;
   color: black;
   background-color: white;
   font-weight: 600;
