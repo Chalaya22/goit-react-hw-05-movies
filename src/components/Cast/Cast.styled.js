@@ -1,15 +1,19 @@
 import styled from 'styled-components';
 
 export const StyledCastsList = styled.ul`
-  display: flex;
-  text-align: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  text-decoration: none;
-  justify-content: center;
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
 `;
 export const StyledCastsItem = styled.li`
-  width: calc((100% - 60px) / 4);
+  /* width: calc((100% - 60px) / 4); */
   min-height: 280px;
   list-style-type: none;
 `;
