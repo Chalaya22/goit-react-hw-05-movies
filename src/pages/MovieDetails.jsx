@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import BtnBack from 'components/BtnBack/BtnBack';
 import Loader from 'components/Loader/Loader';
@@ -38,7 +38,9 @@ const MovieDetails = () => {
       <BtnBack to={backLinkHref}> Go back </BtnBack>
       <MoviesDetailsDescribe movies={movies} />
 
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

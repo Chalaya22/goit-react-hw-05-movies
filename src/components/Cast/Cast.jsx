@@ -38,24 +38,27 @@ const Cast = () => {
     <>
       {error && <div>Try to reload the page</div>}
       {isloading && <Loader />}
+
       <StyledCastsList>
         {actors &&
-          actors.cast.map(({ id, profile_path, name, character }) => (
-            <StyledCastsItem key={id}>
-              <StyledCastsImg
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/w500/${profile_path}`
-                    : defaultImg
-                }
-                alt={`${name}`}
-              />
-              <h4>{name}</h4>
-              <p>Character: {character}</p>
-            </StyledCastsItem>
-          ))}
+          actors.cast.map(({ id, profile_path, name, character }) => {
+            return (
+              <StyledCastsItem key={id}>
+                <StyledCastsImg
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w500/${profile_path}`
+                      : defaultImg
+                  }
+                  alt={`${name}`}
+                />
+                <h4>{name}</h4>
+                <p>Character: {character}</p>
+              </StyledCastsItem>
+            );
+          })}
       </StyledCastsList>
-      {!actors && <NotFound />}
+      {(!actors || actors.cast.length <= 0) && <NotFound />}
     </>
   );
 };

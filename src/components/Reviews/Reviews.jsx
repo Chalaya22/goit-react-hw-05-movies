@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { StyledReviews } from './Reviews.styled';
 import { getReviewsMovie } from '../../services/api';
-// import NotFound from 'components/NotFound/NotFound';
+import NotFound from 'components/NotFound/NotFound';
 import Loader from 'components/Loader/Loader';
 
 const Reviews = () => {
@@ -31,7 +31,7 @@ const Reviews = () => {
       {error && <div>Try to reload the page</div>}
       {isloading && <Loader />}
 
-      {reviews.length > 0 ? (
+      {reviews &&
         reviews.map(({ id, author, content }) => {
           return (
             <StyledReviews key={id}>
@@ -41,10 +41,8 @@ const Reviews = () => {
               <li>{content}</li>
             </StyledReviews>
           );
-        })
-      ) : (
-        <p>Sorry, we don`t have any review for this movie 🤷🏼‍♂️</p>
-      )}
+        })}
+      {(!reviews || reviews.length <= 0) && <NotFound />}
     </>
   );
 };
