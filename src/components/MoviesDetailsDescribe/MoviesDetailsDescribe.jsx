@@ -1,4 +1,7 @@
 import React from 'react';
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import Loader from 'components/Loader/Loader';
 import {
   StyleDetailsdescribe,
   LinkListCastReviews,
@@ -22,6 +25,9 @@ const MoviesDetailsDescribe = ({ movies }) => {
             <StyledLinkCastReviews to="reviews">reviews</StyledLinkCastReviews>
           </li>
         </LinkListCastReviews>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </div>
       <div>
         <h2>{movies.title}</h2>
