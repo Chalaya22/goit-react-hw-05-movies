@@ -4,7 +4,6 @@ import {
   LinkListCastReviews,
   StyledLinkCastReviews,
 } from './MoviesDetailsDescribe.styled';
-import { Link } from 'react-router-dom';
 const MoviesDetailsDescribe = ({ movies }) => {
   return (
     <StyleDetailsdescribe>
