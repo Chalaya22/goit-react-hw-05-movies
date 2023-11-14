@@ -1,4 +1,4 @@
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useRef } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import BtnBack from 'components/BtnBack/BtnBack';
 import Loader from 'components/Loader/Loader';
@@ -13,7 +13,7 @@ const MovieDetails = () => {
 
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
     if (!movieId) return;
@@ -35,8 +35,19 @@ const MovieDetails = () => {
     <div>
       {error && <div>Try to reload the page</div>}
       {isloading && <Loader />}
-      <BtnBack to={backLinkHref}> Go back </BtnBack>
+      <BtnBack to={backLinkHref.current}> Go back </BtnBack>
       <MoviesDetailsDescribe movies={movies} />
+      {/* <>
+        <h3> See more...</h3>
+        <ul>
+          <li>
+            <Link to="cast">cast</Link>
+          </li>
+          <li>
+            <Link to="reviews">reviews</Link>
+          </li>
+        </ul>
+      </> */}
 
       <Suspense fallback={<Loader />}>
         <Outlet />
