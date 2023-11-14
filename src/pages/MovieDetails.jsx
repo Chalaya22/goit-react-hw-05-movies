@@ -37,17 +37,6 @@ const MovieDetails = () => {
       {isloading && <Loader />}
       <BtnBack to={backLinkHref.current}> Go back </BtnBack>
       <MoviesDetailsDescribe movies={movies} />
-      {/* <>
-        <h3> See more...</h3>
-        <ul>
-          <li>
-            <Link to="cast">cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">reviews</Link>
-          </li>
-        </ul>
-      </> */}
 
       <Suspense fallback={<Loader />}>
         <Outlet />
